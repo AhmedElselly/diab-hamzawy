@@ -1,0 +1,35 @@
+<%-include('partials/header')%>
+
+<div>
+	<%-include('partials/jumbo')%>
+</div>
+
+<div class="container">
+	<%-include('partials/categories')%>
+	<h1>احدث المنتجات</h1>
+	<div class="row">
+		<%try{%>
+			<%posts.forEach(post => { %>
+			<div class="card mr-2 mb-5" style="width: 18rem; height: 50vh">
+			  <img height="50%" style="object-fit: cover" src="<%=post.images[0].url%>" alt='<%= post.name %>'>
+			  <div class="card-body">
+			    <h5 class="card-title"><%=post.name%></h5>
+			    <p class="card-text"></p>
+			    <div class="mb-2">
+			    	<span class="badge badge-pill badge-dark"><%=post.price%>.00 LE</span>
+			    </div>
+			    <a href="/posts/show/<%=post._id%>" class="btn btn-warning">
+			    	عرض المنتج
+			    </a>
+			  </div>
+			</div>
+				
+			<% })%>
+		<%} catch(err){%>
+			<h1>No posts yet</h1>
+		<%}%>
+
+	</div>
+</div>
+
+<%-include('partials/footer')%>

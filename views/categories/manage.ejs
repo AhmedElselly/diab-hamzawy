@@ -1,0 +1,30 @@
+<%-include('../partials/header')%>
+
+
+<div class="container mt-5">
+	<h3>إدارة التصنيفات</h3>
+	<a class="btn btn-warning mb-3" href="/categories/new">تصنيف جديد</a>	
+	
+	<table class="table table-dark">
+        <thead>
+          <tr class="home">
+            <th scope="col">التصنيفات</th>
+            <th scope="col">#ID</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            <% categoryList.forEach(function(category){ %>
+            <tr id='id_<%= category._id %>' class="<%= category.slug %>">
+                <td><%= category.name %></td>
+                <td><%= category._id %></td>
+                
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+</div>
+
+
+
+<%-include('../partials/footer')%>

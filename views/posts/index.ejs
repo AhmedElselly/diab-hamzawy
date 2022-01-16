@@ -1,0 +1,38 @@
+<%-include('../partials/header')%>
+
+<div class="container-fluid">
+
+<div class="row mt-2">
+	<div class="col-sm-4">
+		<%-include('../partials/searchAndFilter')%>
+	</div>
+	<div class="col-md-8">
+		<%-include('../partials/sub-categories')%>	
+		<h1>أحدث المنتجات</h1>
+		<%-include('../partials/postsPaginate')%>
+		<div class="row">
+			<%posts.docs.map(post => {%>
+				<div class="card mr-2 mb-5" style="width: 18rem; height: 50vh">
+				  <img height="50%" style="object-fit: cover" src="<%=post.images[0].url%>" alt='<%= post.name %>'>
+				  <div class="card-body">
+				    <h5 class="card-title"><%=post.name%></h5>
+				    <p class="card-text"></p>
+				    <div class="mb-2">
+				    	<span class="badge badge-pill badge-dark">
+				    		<%=post.price%>.00 LE
+				    	</span>
+				    </div>
+				    <a href="/posts/add-to-cart/<%=post._id%>" class="btn mr-2 btn-warning">أضف للسلة</a>
+				    <a href="/posts/show/<%=post._id%>" class="btn btn-secondary">
+				    	عرض المنتج
+				    </a>
+				  </div>
+				</div>
+			<%})%>
+		</div>
+	</div>
+
+</div>
+</div>
+
+<%-include('../partials/footer')%>

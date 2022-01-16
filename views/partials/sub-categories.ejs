@@ -1,0 +1,78 @@
+<nav class="nav nav-pills mb-3 nav-fills flex-column flex-sm-row">
+  <li id='drop-item-1' class="nav-item dropdown">
+    <a id='dropdown-toggle-1' class="nav-link btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+    <div id="dropdown-menu-1" class="dropdown-menu">
+      <!-- <a class="dropdown-item" href="#">Action</a> -->
+      
+    </div>
+  </li>
+
+  <li id='drop-item-2' class="nav-item ml-3 dropdown">
+    <a id='dropdown-toggle-2' class="nav-link btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+    <div id="dropdown-menu-2" class="dropdown-menu">
+      <!-- <a class="dropdown-item" href="#">Action</a> -->
+      
+    </div>
+  </li>
+
+  <li id='drop-item-3' class="nav-item ml-3 dropdown">
+    <a id='dropdown-toggle-3' class="nav-link btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+    <div id="dropdown-menu-3" class="dropdown-menu">
+      <!-- <a class="dropdown-item" href="#">Action</a> -->
+      
+    </div>
+  </li>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+
+
+<script>
+	const url = 'http://localhost:3000';
+	
+	const nav = document.querySelector('.nav-pills');
+	const getCategories = async url => {
+		const res = await axios.get(`${url}/categories`);
+		console.log(res.data);
+
+		const drop1 = document.querySelector('#dropdown-toggle-1');
+		const dropMenu1 = document.querySelector('#dropdown-menu-1');
+		console.log(drop1)
+
+		drop1.text = res.data[0].name;
+		res.data[0].children.map(sub => {
+			let link = document.createElement('a');
+			link.text = sub.name;
+			link.setAttribute('href', `${url}/posts?search=${sub.name}`)
+			link.classList.add('dropdown-item');
+			dropMenu1.append(link);
+		})
+
+		const drop2 = document.querySelector('#dropdown-toggle-2');
+		const dropMenu2 = document.querySelector('#dropdown-menu-2');
+		console.log(drop2)
+
+		drop2.text = res.data[1].name;
+		res.data[1].children.map(sub => {
+			let link = document.createElement('a');
+			link.text = sub.name;
+			link.setAttribute('href', `${url}/posts?search=${sub.name}`)
+			link.classList.add('dropdown-item');
+			dropMenu2.append(link);
+		})
+		const drop3 = document.querySelector('#dropdown-toggle-3');
+		const dropMenu3 = document.querySelector('#dropdown-menu-3');
+		console.log(drop3)
+
+		drop3.text = res.data[2].name;
+		res.data[2].children.map(sub => {
+			let link = document.createElement('a');
+			link.text = sub.name;
+			link.setAttribute('href', `${url}/posts?search=${sub.name}`)
+			link.classList.add('dropdown-item');
+			dropMenu3.append(link);
+		})		
+	}
+
+	getCategories(url);
+</script>

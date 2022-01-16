@@ -1,0 +1,50 @@
+<div class="container">
+	
+	<h1>الطلبات</h1>
+	<%if(orders.length){%>
+		<%orders.map(order => {%>
+			<div class="card text-center">
+			  <div class="card-header">
+			    Order ID: #<%=order._id%>
+			  </div>
+			  
+			  <%order.items.map(post => {%>
+			  <div class="card-body">
+			  	<%console.log(post)%>
+			    <h5 class="card-title">الاسم: <%=post.item.name%></h5>
+			    <p class="card-text">الوصف: <%=post.item.body%>.</p>
+			    <p class="card-text">الكمية المطلوبة: <%=post.qty%></p>
+			    <p class="card-text">اجمالي سعر المنتج: <%=post.price%> LE</p>
+			    <a href="/posts/show/<%=post.item._id%>" class="btn btn-primary">
+			    	اعرض المنتج
+			    </a>
+			  </div>
+			  <hr/>
+			  <%})%>
+			  <div class="card-footer text-muted">
+			  	<div>
+			  		بيانات الطالب
+			  	</div>
+			  	<div>
+			  		الاسم: <%=order.orderedBy.username%>
+			  	</div>
+			  	<div>
+			  		التليفون: <%=order.phone%>
+			  	</div>
+			  	<div>
+			  		العنوان: <%=order.address%>
+			  	</div>
+			    <div>
+			    	تاريخ الطلب: <%=order.created.toLocaleString()%>
+			    </div>
+			    <div>
+			    	اجمالي السعر: <%=order.cart.totalPrice%>
+			    </div>
+			    <div>
+			    	اجمالي الكمية: <%=order.cart.totalQty%>
+			    </div>
+			  </div>
+			</div>
+		<%})%>
+	<%}%>
+</div>

@@ -1,0 +1,21 @@
+<%-include('partials/header')%>
+
+
+<div class="container">
+  <h1>تسجيل دخول</h1>
+  <form action="/users/login" method="POST">
+    <div class="form-group">
+      <label for="email">البريد الاليكتروني</label>
+      <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="البريد الاليكتروني">
+    </div>
+    
+    <div class="form-group">
+      <label for="password">كلمة المرور</label>
+      <input type="password" name="password" class="form-control" id="password" placeholder="كلمة المرور">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">إرسال</button>
+  </form>
+</div>
+
+<%-include('partials/footer')%>

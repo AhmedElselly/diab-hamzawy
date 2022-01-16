@@ -1,0 +1,27 @@
+<%-include('../partials/header')%>
+<%-include('../partials/categories')%>
+
+
+<div class="container mt-5">
+	<h1><%=title%></h1>
+	<%-include('../partials/paginate')%>
+	<div class="row">
+<%posts.docs.map(post => {%>
+	<div class="card mr-2 mb-5" style="width: 18rem; height: 50vh">
+	  <img height="50%" style="object-fit: cover" src="<%=post.images[0].url%>" alt='<%= post.name %>'>
+	  <div class="card-body">
+	    <h5 class="card-title"><%=post.name%></h5>
+	    <p class="card-text"></p>
+	    <div class="mb-2">
+	    	<span class="badge badge-pill badge-dark"><%=post.price%>LE</span>
+	    </div>
+	    <a href="/posts/show/<%=post._id%>" class="btn btn-warning">
+	    	show more
+	    </a>
+	  </div>
+	</div>
+<%})%>
+</div>
+</div>
+
+<%-include('../partials/footer')%>

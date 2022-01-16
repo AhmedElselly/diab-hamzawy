@@ -1,0 +1,8 @@
+<%reviews.map(review => {%>
+	<div class="media">
+	  <div class="media-body">
+	    <h5 class="mt-0"><%=review.author.username%></h5>
+	    <%=review.text%>
+	  </div>
+	</div>
+<%})%>

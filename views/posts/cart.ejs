@@ -1,0 +1,51 @@
+<%-include('../partials/header')%>
+
+<div class="container">
+	<h1>السلة</h1>
+	<%if(posts.length){%>
+	<div class="row">
+		<%posts.map(post => {%>
+			<div class="card" style="width: 18rem;">
+				<input class="postId" type="hidden" value="<%=post.item._id%>">
+			  <img src="<%=post.item.images[0].url%>" class="card-img-top" alt="<%=post.item.name%>">
+			  <div class="card-body">
+			    <a href="http://localhost:3000/posts/show/<%=post.item._id%>"><h5 class="card-title"><%=post.item.name%></h5></a>
+			    <p class="card-text"><%=post.item.price%> LE</p>
+			    <a href="/posts/add/<%=post.item._id%>" class="btn btn-warning">+</a>
+			    <a href="/posts/reduce/<%=post.item._id%>" class="btn btn-danger">-</a>
+			  </div>
+			</div>
+		<%})%>
+	</div>
+	<h3>السعر الاجمالي: <%=total%> LE</h3>
+	<h3>اجمالي المشتريات: <%=qty%></h3>
+	<%} else {%>
+		<h3>قم بالتسوق لملأ السلة</h3>
+	<%}%>
+
+	<%if(posts.length){%>
+		<div>
+			<form action="/orders" method='POST'>
+			  <div class="form-row">
+			    <div class="form-group col-md-6">
+			      <label for="name">الاسم</label>
+			      <input type="text" placeholder="الاسم" name="name" class="form-control" id="name">
+			    </div>
+			    <div class="form-group col-md-6">
+			      <label for="phone">التليفون</label>
+			      <input type="text" placeholder="التليفون" name="phone" class="form-control" id="phone">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="address">العنوان</label>
+			    <input type="text" name="address" class="form-control" id="address" placeholder="العنوان">
+			  </div>
+			<p>الدفع عند الاستلام</p>
+			  <button type="submit" class="btn btn-primary">أطلب</button>
+			</form>
+		</div>
+	<%}%>
+
+	
+</div>
+<%-include('../partials/footer')%>

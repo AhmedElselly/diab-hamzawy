@@ -1,0 +1,23 @@
+<%-include('partials/header')%>
+
+<div class="container">
+  <h1>تسجيل مستخدم جديد</h1>
+<form action="/users/register" method="POST">
+  <div class="form-group">
+    <label for="email">البريد الاليكتروني</label>
+    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="username">اسم المستخدم</label>
+    <input type="text" name='username' class="form-control" id="username" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="password">كلمة المرور</label>
+    <input type="password" name="password" class="form-control" id="password">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">تسجيل</button>
+</form>
+</div>
+
+<%-include('partials/footer')%>
